@@ -6,7 +6,9 @@ namespace Q5
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("Enter characters: ");
+            string inputString = Console.ReadLine();
+
         }
     }
 }
