@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * Description: takes as input a series of student marks terminated with a value of -999.  For each value input, the grade is be determined and displayed.
+ *              The program also keeps a count of students getting each grade as well as the cumulative marks. Thus, it is able to determine the average
+ *              mark for each grade.
+ * 
+ * Author     : Mark Gilmartin
+ * 
+ * Date       : 28/02/2020
+*/
+
+using System;
 
 namespace Q1
 {
