@@ -14,7 +14,9 @@ namespace Q1
 {
     class Program
     {
-        static string[] gradeName = new string[] { "F", "E", "D", "C", "B", "A" };
+        static string[] GradeName = new string[] { "F", "E", "D", "C", "B", "A" };
+        static double[] GradeTotals = new double[5];
+        static double
 
         static void Main(string[] args)
         {
@@ -25,11 +27,11 @@ namespace Q1
             {
                 Console.Write("Enter student mark: ");
                 studentMark = double.Parse(Console.ReadLine());
-                getGradeBand(studentMark);
+                getGradeIndex(studentMark);
             }
         }
 
-        static string getGradeBand(double studentMark)
+        static int getGradeIndex(double studentMark)
         {
 
         }
