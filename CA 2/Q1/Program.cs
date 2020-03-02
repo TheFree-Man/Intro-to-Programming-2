@@ -9,7 +9,10 @@
  * Date        : 02/03/2020
 */
 
+// Ran out of time
+
 using System;
+using System.Linq;
 
 namespace Q1
 {
@@ -40,11 +43,11 @@ namespace Q1
                     {
                         break;
                     }
-                    taxPayable = CalculatedTax(propertyValue, band);
                     propertyValue = isDataValid(input);   // Validates the data entered
                     band = getTaxBand(propertyValue);   // Method that gets all the necessary values needed like what Band they got
+                    taxPayable = CalculatedTax(propertyValue, band);
                     counter++;
-                    Console.WriteLine("\nThe tax due on {0} with a rate of {1}\n", propertyValue, band); // Prints out what tax they got for their mark
+                    Console.WriteLine("\nThe tax due on {0} with a rate of {1} is: {2}\n", propertyValue, band, taxPayable); // Prints out what tax they got for their mark
                 }
                 catch (Exception myError)
                 {
@@ -90,11 +93,11 @@ namespace Q1
             return calculatedTax;
         }
 
-        static void doAverage() // Method to calculate the average for each tax
+        static void doAverage() // Method to calculate the average for all tax
         {
             for (int i = 0; i < totalTaxBand.Length; i++)
             {
-                averageTax[i] = TaxTotal[i] / totalTaxBand[i];
+                averageTax[i] += TaxTotal[i] / totalTaxBand[i];
             }
         }
 
