@@ -6,7 +6,9 @@ namespace Q3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("please enter string: ");
+            string input = Console.ReadLine();
+            Console.WriteLine("\n{0}", input.Trim());
         }
     }
 }
