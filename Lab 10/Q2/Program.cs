@@ -6,7 +6,9 @@ namespace Q2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.Write("please enter string: ");
+            string input = Console.ReadLine();
+            Console.WriteLine("\nThe number of characters is: {0}", input.Length);
         }
     }
 }
