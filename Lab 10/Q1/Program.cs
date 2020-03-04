@@ -6,7 +6,9 @@ namespace Q1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine
+            Console.Write("please enter string: ");
+            string input = Console.ReadLine();
+            Console.WriteLine("\n{0}",input);
         }
     }
 }
