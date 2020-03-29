@@ -21,27 +21,28 @@ namespace Q1
 
             while (userChoice != 4)
             {
+                // Menu choice system
                 if (userChoice == 1)
                 {
                     string[] scoreBand = { "0-9999", "10,000-19,999", "20,000-29,999", "30,000-39,999", "40,000 +" };
-                    int[] numOfPlayerBand = new int[scoreBand.Length];
-                    double average = PlayerScore(numOfPlayerBand);
-                    PlayerScoreOutput(scoreBand, numOfPlayerBand, average);
-                    Array.Clear(numOfPlayerBand, 0, numOfPlayerBand.Length);
+                    int[] numOfPlayers = new int[scoreBand.Length];
+                    double average = PlayerScore(numOfPlayers);
+                    PlayerScoreOutput(scoreBand, numOfPlayers, average);
+                    Array.Clear(numOfPlayers, 0, numOfPlayers.Length);
                     userChoice = Menu();
                 }
                 else if (userChoice == 2)
                 {
-                    string[] Locations = { "Europe", "Asia", "North America", "South America", "Austrailia" };
-                    int[] locationPlayerBand = new int[Locations.Length];
-                    LocationReport(locationPlayerBand);
-                    LocationReportOutput(Locations, locationPlayerBand);
+                    string[] locations = { "Europe", "Asia", "North America", "South America", "Austrailia" };
+                    int[] playerLocation = new int[locations.Length];
+                    LocationReport(playerLocation);
+                    LocationReportOutput(locations, playerLocation);
                     userChoice = Menu();
                 }
                 else if (userChoice == 3)
                 {
-                    string[] locationBand = { "Europe", "Asia", "North America", "South America", "Australia" };
-                    PlayerSearch(locationBand);
+                    string[] locations = { "Europe", "Asia", "North America", "South America", "Australia" };
+                    PlayerSearch(locations);
                     userChoice = Menu();
                 }
             }
@@ -66,6 +67,7 @@ namespace Q1
 
             while (!validValue)
             {
+                // To stop programme crashing if number outside of 1-4 is entered
                 do
                 {
                     Console.Write("\nEnter Choice: ");
@@ -85,7 +87,7 @@ namespace Q1
             return userChoice;
         }
 
-        static double PlayerScore(int[] numOfPlayerBand)
+        static double PlayerScore(int[] numOfPlayers)
         {
             double average = 0;
             // Crash handling if the gamescores.txt file is not present
@@ -99,50 +101,29 @@ namespace Q1
 
                 while (lineIn != null)
                 {
+                    // Increments Counter for every person in each score band
                     fields = lineIn.Split(',');
                     score = int.Parse(fields[2]);
                     
-
-                    /*switch (score)
-                    {
-                        case (score > 39999) :
-                            numOfPlayerBand[4]++;
-                            break;
-                        case 2:
-                            numOfPlayerBand[3]++;
-                            break;
-                        case 3:
-                            numOfPlayerBand[2]++;
-                            break;
-                        case 4:
-                            numOfPlayerBand[1]++;
-                            break;
-                        case 5:
-                            numOfPlayerBand[0]++;
-                            break;
-                        default:
-                            break;
-                    }*/
-
                     if (score > 39999)
                     {
-                        numOfPlayerBand[4]++;
+                        numOfPlayers[4]++;
                     }
                     else if (score > 29999)
                     {
-                        numOfPlayerBand[3]++;
+                        numOfPlayers[3]++;
                     }
                     else if (score > 19999)
                     {
-                        numOfPlayerBand[2]++;
+                        numOfPlayers[2]++;
                     }
                     else if (score > 9999)
                     {
-                        numOfPlayerBand[1]++;
+                        numOfPlayers[1]++;
                     }
                     else if (score > 0)
                     {
-                        numOfPlayerBand[0]++;
+                        numOfPlayers[0]++;
                     }
                     lineIn = inputStream.ReadLine();
                 }
@@ -185,64 +166,69 @@ namespace Q1
 
         }
 
-        static void PlayerScoreOutput(string[] scoreBand, int[] numOfPlayerBand, double average)
+        static void PlayerScoreOutput(string[] scoreBand, int[] numOfPlayers, double average)
         {
             Console.WriteLine("\n{0,-15}{1,-20}{2,-10}", "Scores", "Number of Players", "Graph");
-            string[] graph = new string[numOfPlayerBand.Length];
+            string[] graph = new string[numOfPlayers.Length];
 
             for (int i = 0; i < graph.Length; i++)
             {
-                for (int j = 0; j < numOfPlayerBand[i]; j++)   // Adds a hashtag for every player in that current index
+                // Increments graph for every person in each band
+                for (int j = 0; j < numOfPlayers[i]; j++)
                 {
                     graph[i] += "#";
                 }
             }
 
+            // Outputs player score and total to a table
             for (int i = 0; i < scoreBand.Length; i++)
             {
-                Console.WriteLine("{0,-15}{1,-20}{2,-10}", scoreBand[i], numOfPlayerBand[i], graph[i]);
+                Console.WriteLine("{0,-15}{1,-20}{2,-10}", scoreBand[i], numOfPlayers[i], graph[i]);
             }
 
             int total = 0;
-            for (int i = 0; i < numOfPlayerBand.Length; i++)
+            for (int i = 0; i < numOfPlayers.Length; i++)
             {
-                total += numOfPlayerBand[i];
+                total += numOfPlayers[i];
             }
 
             Console.WriteLine("\nTotal Players: {0}", total);
             Console.WriteLine("\nAverage Score: {0:n0}", average);
         }
 
-        static void LocationReport(int[] locationPlayerBand)
+        static void LocationReport(int[] playerLocation)
         {
             try
             {
+                // Crash handling if the gamescores.txt file is not present
                 FileStream fs = new FileStream(@"../../GameScores.txt", FileMode.Open, FileAccess.Read);
                 StreamReader inputStream = new StreamReader(fs);
                 string lineIn;
                 lineIn = inputStream.ReadLine();
-                int locationBand;
+                int locations;
 
                 while (lineIn != null)
                 {
                     fields = lineIn.Split(',');
-                    locationBand = int.Parse(fields[3]);
-                    switch (locationBand)
+                    locations = int.Parse(fields[3]);
+
+                    // Increments Counter for every person in each location band
+                    switch (locations)
                     {
                         case 1:
-                            locationPlayerBand[0]++;
+                            playerLocation[0]++;
                             break;
                         case 2:
-                            locationPlayerBand[1]++;
+                            playerLocation[1]++;
                             break;
                         case 3:
-                            locationPlayerBand[2]++;
+                            playerLocation[2]++;
                             break;
                         case 4:
-                            locationPlayerBand[3]++;
+                            playerLocation[3]++;
                             break;
                         case 5:
-                            locationPlayerBand[4]++;
+                            playerLocation[4]++;
                             break;
                         default:
                             break;
@@ -258,23 +244,25 @@ namespace Q1
             }
         }
 
-        static void LocationReportOutput(string[] locations, int[] locationPlayerBand)
+        static void LocationReportOutput(string[] locations, int[] playerLocation)
         {
-            Console.WriteLine("{0,-20}{1,-15}", "Location", "Player Count");
 
-            for (int i = 0; i < locationPlayerBand.Length; i++)
+            //Outputs location report to a table
+            Console.WriteLine("\n{0,-20}{1,-15}", "Location", "Player Count");
+
+            for (int i = 0; i < playerLocation.Length; i++)
             {
-                Console.WriteLine("{0,-20}{1,-15}", locations[i], locationPlayerBand[i]);
+                Console.WriteLine("{0,-20}{1,-15}", locations[i], playerLocation[i]);
             }
 
             int total = 0;
-            int max = locationPlayerBand[0];
+            int max = playerLocation[0];
             int maxIndex = 0;
 
-            for (int i = 0; i < locationPlayerBand.Length; i++)
+            for (int i = 0; i < playerLocation.Length; i++)
             {
-                total += locationPlayerBand[i];
-                if (locationPlayerBand[i] > max)
+                total += playerLocation[i];
+                if (playerLocation[i] > max)
                 {
                     maxIndex = i;
                 }
@@ -288,6 +276,7 @@ namespace Q1
         {
             try
             {
+                // Crash handling if the gamescores.txt file is not present
                 FileStream fs = new FileStream(@"../../GameScores.txt", FileMode.Open, FileAccess.Read);
                 StreamReader inputStream = new StreamReader(fs);
                 string lineIn;
@@ -298,6 +287,7 @@ namespace Q1
                 Console.Write("\nEnter Player Name: ");
                 playerName = Console.ReadLine().ToLower();
 
+                // Searches csv file for names matching one entered and outputs location
                 while (lineIn != null)
                 {
                     fields = lineIn.Split(',');
