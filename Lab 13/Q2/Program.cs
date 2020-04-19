@@ -4,8 +4,8 @@ using System.Text;
 
 namespace Q2
 {
-    class Circle
+    class Program
     {
-
+        public string[] 
     }
 }
