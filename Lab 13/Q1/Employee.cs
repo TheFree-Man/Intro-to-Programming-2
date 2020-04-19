@@ -12,7 +12,6 @@ namespace Q1
             myEmployee._name = "Mary"; // set the name of the employee to "Mary"
             myEmployee._name2 = "John";
             myEmployee.PrintName();
-            Console.WriteLine(Employee.t());
         }
     }
 
@@ -26,6 +25,7 @@ namespace Q1
         {
 
         }
+
 
         //parameterised constructor
         public Employee(string n)
