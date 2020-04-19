@@ -5,6 +5,17 @@ namespace Q2
     class Circle
     {
         private double radius;
+        public double Radius
+        {
+            get
+            {
+                return radius;
+            }
+            set
+            {
+                radius = value;
+            }
+        }
 
         public Circle()
         {
