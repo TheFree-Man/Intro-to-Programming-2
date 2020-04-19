@@ -15,8 +15,16 @@ namespace Q2
                 myCircles[i] = new Circle();
             }
 
-            myCircles[1].Radius = 10;
-            myCircles[3].Radius = 10;
+            myCircles[0].Radius = 10;
+            myCircles[2].Radius = 10;
+
+            for (int i = 0; i < 4; i++)
+            {
+                Console.WriteLine(myCircles.ToString());
+            }
+            
+            Console.WriteLine("1st circle area is: {0}", myCircles[0].GetArea());
+            Console.WriteLine("4th circle's area is: {0}", myCircles[3].GetArea());
         }
     }
 }
