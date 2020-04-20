@@ -12,6 +12,7 @@ namespace Q1
 
         public int CustomerID { get; set; }
         public string Name { get; set; }
+        public int moneyOwed { get; set; }
         public double AccountBalance
         {
             get
@@ -31,16 +32,27 @@ namespace Q1
             accountBalance = 0;
         }
 
+        public Customer(int c, string n, double a, int charge)
+        {
+            customerID = c;
+            Name = n;
+            accountBalance = a;
+            moneyOwed = charge;
+        }
+
         public int DHCPserver()
         {
             customerID++;
             return customerID;
         }
 
-        public int RandomNumber(int min, int max)
+        public double AddCharge()
         {
-            Random random = new Random();
-            return random.Next(min, max);
+            return accountBalance - moneyOwed;
+        }
+        public override string ToString()
+        {
+            return string.Format("Customer number is        :      {0}\nCustomer name is          :      {1}\nMoney Owed is             :      {2}", customerID, Name, AddCharge());
         }
     }
 }
