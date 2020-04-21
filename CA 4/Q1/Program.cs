@@ -9,7 +9,8 @@ namespace Q1
             Customer Customer1;
             Customer1 = new Customer();
             Customer1.Name = "Mandy";
-            Console.WriteLine("money?");
+            Console.WriteLine("Customer1 = {0}", Customer1.Name);
+            Console.Write("\nEnter amount: ");
             int charge = int.Parse(Console.ReadLine());
             Console.WriteLine(Customer1.ToString());
         }

@@ -46,7 +46,7 @@ namespace Q1
             return customerID;
         }
 
-        public double AddCharge()
+        public virtual double AddCharge()
         {
             return accountBalance - moneyOwed;
         }
