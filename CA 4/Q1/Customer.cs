@@ -86,7 +86,7 @@ namespace Q1
         }
         public override string ToString()
         {
-            return string.Format("Customer number is        :      {0}\nCustomer name is          :      {1}\nMoney Owed is             :      {2}", _customerID, _name, _moneyOwed);
+            return string.Format("\nCustomer number is        :      {0}\nCustomer name is          :      {1}\nMoney Owed is             :      {2}", _customerID, _name, AddCharge());
         }
     }
 }
