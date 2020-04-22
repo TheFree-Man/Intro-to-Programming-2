@@ -8,10 +8,11 @@ namespace Q1
         {
             Customer[] myCustomers = new Customer[4];
 
-            myCustomers[0] = new Customer("Mandy", 0);
+            myCustomers[0] = new Customer();
+            myCustomers[0].Name = "Mandy";
             Console.WriteLine(myCustomers[0].ToString());
 
-            myCustomers[1] = new Customer("Jamie", 500);
+            myCustomers[1] = new TrialCustomer("Jimmy", 500, 1000);
             Console.WriteLine(myCustomers[1].ToString());
         }
     }

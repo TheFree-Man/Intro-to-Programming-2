@@ -6,10 +6,10 @@ namespace Q1
 {
     class Customer
     {
-        private int _customerID;
-        private string _name;
-        private decimal _accountBalance;
-        private decimal _moneyOwed;
+        protected int _customerID;
+        protected string _name;
+        protected double _accountBalance;
+        protected double _moneyOwed;
 
         public int CustomerID
         {
@@ -33,7 +33,7 @@ namespace Q1
                 _name = value;
             }
         }
-        public decimal MoneyOwed
+        public double MoneyOwed
         {
             get
             {
@@ -44,7 +44,7 @@ namespace Q1
                 _moneyOwed = value;
             }
         }
-        public decimal AccountBalance
+        public double AccountBalance
         {
             get
             {
@@ -62,7 +62,7 @@ namespace Q1
             _accountBalance = 0;
         }
 
-        public Customer(string n, decimal c)
+        public Customer(string n, double c)
         {
             _customerID = AcNoGenerator();
 
@@ -80,13 +80,68 @@ namespace Q1
             return _customerID;
         }
 
-        public virtual decimal AddCharge()
+        public virtual bool AddCharge()
         {
-            return _accountBalance - _moneyOwed;
+            try
+            {
+                _accountBalance -= _moneyOwed;
+            }
+            catch (ArithmeticException myError)
+            {
+                Console.WriteLine(myError);
+            }
+
+            return true;
         }
+
         public override string ToString()
         {
-            return string.Format("\nCustomer number is        :      {0}\nCustomer name is          :      {1}\nMoney Owed is             :      {2}", _customerID, _name, AddCharge());
+            return string.Format("\nCustomer number is        :      {0}\nCustomer name is          :      {1}\nMoney Owed is             :      {2}", _customerID, _name, _moneyOwed);
+        }
+    }
+
+    class TrialCustomer : Customer
+    {
+        protected double _maxCreditAvailable;
+        public double MaxCreeditAvailable
+        {
+            get
+            {
+                return _maxCreditAvailable;
+            }
+            set
+            {
+                _maxCreditAvailable = value;
+            }
+        }
+
+        TrialCustomer() : base()
+        {
+            _maxCreditAvailable = 0;
+        }
+
+        public TrialCustomer(string n, double c, double m) : base(n, c)
+        {
+            _maxCreditAvailable = m;
+        }
+
+        public virtual bool AddCharge(double _moneyOwed)
+        {
+            if ( _accountBalance + _maxCreditAvailable > _moneyOwed)
+            {
+                _accountBalance -= _moneyOwed;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override string ToString()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            return string.Format("\nCustomer number is        :      {0}\nCustomer name is          :      {1}\nMoney Owed is             :      {2:c}\nMax Credit                :      {3:c}", _customerID, _name, _moneyOwed, _maxCreditAvailable);
         }
     }
 }
