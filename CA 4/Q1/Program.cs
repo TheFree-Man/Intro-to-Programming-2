@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace Q1
 {
@@ -34,7 +35,38 @@ namespace Q1
             try
             {
                 Customer[] myCustomersCSV = new Customer[5];
+                string[] fields = new string[3];
+
                 FileStream fs = new FileStream(@"../../customers.txt", FileMode.Open, FileAccess.Read);
+                StreamReader inputStream = new StreamReader(fs);
+                string lineIn;
+                lineIn = inputStream.ReadLine();
+                
+                int count = 0;
+                double accountBalance = 0, maxCredit = 0;
+                while (lineIn != null)
+                {
+                    fields = lineIn.Split(',');
+                    if (fields.Length == 3)
+                    {
+                        accountBalance = double.Parse(fields[1]);
+                        maxCredit = double.Parse(fields[2]);
+                        myCustomers[count] = new TrialCustomer(fields[0], accountBalance, maxCredit);
+                    }
+                    else
+                    {
+                        accountBalance = double.Parse(fields[1]);
+                        myCustomers[count] = new Customer(fields[0], accountBalance);
+                    }
+                    count++;
+                    lineIn = inputStream.ReadLine();
+                }
+
+                inputStream.Close();
+                for (int i = 0; i < myCustomers.Length; i++)
+                {
+                    Console.WriteLine(myCustomers[i].ToString());
+                }
 
             }
             catch (Exception myError)
