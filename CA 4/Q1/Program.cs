@@ -51,28 +51,28 @@ namespace Q1
                     {
                         accountBalance = double.Parse(fields[1]);
                         maxCredit = double.Parse(fields[2]);
-                        myCustomers[count] = new TrialCustomer(fields[0], accountBalance, maxCredit);
+                        myCustomersCSV[count] = new TrialCustomer(fields[0], accountBalance, maxCredit);
                     }
                     else
                     {
                         accountBalance = double.Parse(fields[1]);
-                        myCustomers[count] = new Customer(fields[0], accountBalance);
+                        myCustomersCSV[count] = new Customer(fields[0], accountBalance);
                     }
                     count++;
                     lineIn = inputStream.ReadLine();
                 }
 
                 inputStream.Close();
-                for (int i = 0; i < myCustomers.Length; i++)
+                for (int i = 0; i < myCustomersCSV.Length; i++)
                 {
-                    Console.WriteLine(myCustomers[i].ToString());
+                    Console.WriteLine(myCustomersCSV[i].ToString());
                 }
 
             }
             catch (Exception myError)
             {
 
-                Console.WriteLine(myError); ;
+                Console.WriteLine(myError);
             }
         }
     }
